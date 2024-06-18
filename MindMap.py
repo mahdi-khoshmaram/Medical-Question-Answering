@@ -1,3 +1,4 @@
+from langchain_community.llms import Replicate
 from langchain.chat_models import ChatOpenAI
 from langchain import PromptTemplate,LLMChain
 from langchain.prompts.chat import (
@@ -41,6 +42,8 @@ from gensim.models import Word2Vec
 import sys
 from time import sleep
 
+
+# def llama(prompt):
 
 
 def chat_35(prompt):
