@@ -1,4 +1,5 @@
-from langchain_community.llms import Replicate
+from langchain_community.chat_models import ChatOllama
+
 from langchain.chat_models import ChatOpenAI
 from langchain import PromptTemplate,LLMChain
 from langchain.prompts.chat import (
@@ -43,7 +44,11 @@ import sys
 from time import sleep
 
 
-# def llama(prompt):
+def llama(prompt):
+    Replicate(
+    model="meta/meta-llama-3-8b-instruct",
+    model_kwargs={"temperature": 0.0, "top_p": 1, "max_new_tokens":500}
+    )
 
 
 def chat_35(prompt):
