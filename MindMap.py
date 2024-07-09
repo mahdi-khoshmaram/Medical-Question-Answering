@@ -101,6 +101,7 @@ def prompt_extract_keyword(input_text):
 
     response_of_KG = chat(chat_prompt_with_values.to_messages()).content
 
+    # question_kg = M variable in the paper 
     question_kg = re.findall(re1,response_of_KG)
     return question_kg
 
