@@ -1,4 +1,10 @@
+from langchain_core.prompts import (
+    ChatPromptTemplate,
+    FewShotChatMessagePromptTemplate,
+)
 from langchain_community.chat_models import ChatOllama
+
+
 
 from langchain.chat_models import ChatOpenAI
 from langchain import PromptTemplate,LLMChain
@@ -45,11 +51,11 @@ from time import sleep
 
 
 def llama(prompt):
-    Replicate(
-    model="meta/meta-llama-3-8b-instruct",
-    model_kwargs={"temperature": 0.0, "top_p": 1, "max_new_tokens":500}
-    )
-
+    llm = ChatOllama(
+            model="llama3",
+            temperature=0,
+            )
+    return llm.invoke(prompt).content
 
 def chat_35(prompt):
     completion = openai.ChatCompletion.create(
@@ -101,7 +107,6 @@ def prompt_extract_keyword(input_text):
 
     response_of_KG = chat(chat_prompt_with_values.to_messages()).content
 
-    # question_kg = M variable in the paper 
     question_kg = re.findall(re1,response_of_KG)
     return question_kg
 
@@ -445,7 +450,7 @@ if __name__ == "__main__":
         with open(os.path.join(docs_dir, file), 'r', encoding='utf-8') as f:
             doc = f.read()
             docs.append(doc)
-   
+# --------------------------------------part1------------------------------------
     with open("./data/chatdoctor5k/NER_chatgpt.json", "r") as f:
         for line in f.readlines()[30:]:
             x = json.loads(line)
@@ -489,7 +494,7 @@ if __name__ == "__main__":
             answer_kg = answer_kg.split(", ")
             # print(answer_kg)
 
-            
+# ---------------------------------------end of part1--------------------------------------------
             match_kg = []
             entity_embeddings_emb = pd.DataFrame(entity_embeddings["embeddings"])
            
