@@ -1,21 +1,27 @@
-
-from neo4j import GraphDatabase, basic_auth
+from neo4j import GraphDatabase
 import pandas as pd
-# 1. build neo4j knowledge graph datasets
-driver = GraphDatabase.driver(
-  "bolt://18.205.161.69:7687",
-  auth=basic_auth("neo4j", "nickel-slinging-midwatches"))
+from tqdm import tqdm
 
+uri = "bolt://localhost:7687"
+user = "neo4j"
+password = "12341234"
+
+driver = GraphDatabase.driver(uri, auth=(user, password))
 session = driver.session()
+
+
+##############################build KG 
 
 session.run("MATCH (n) DETACH DELETE n")# clean all
 
 # read triples
 df = pd.read_csv('./data/chatdoctor5k/train.txt', sep='\t', header=None, names=['head', 'relation', 'tail'])
 
-i = 0
+len = len(df)
+i = 1
+
 for index, row in df.iterrows():
-	print(i)
+	print(i,"/",len)
 	head_name = row['head']
 	tail_name = row['tail']
 	relation_name = row['relation']

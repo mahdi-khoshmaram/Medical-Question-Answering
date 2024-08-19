@@ -450,7 +450,7 @@ if __name__ == "__main__":
         with open(os.path.join(docs_dir, file), 'r', encoding='utf-8') as f:
             doc = f.read()
             docs.append(doc)
-# --------------------------------------part1------------------------------------
+
     with open("./data/chatdoctor5k/NER_chatgpt.json", "r") as f:
         for line in f.readlines()[30:]:
             x = json.loads(line)
@@ -494,7 +494,6 @@ if __name__ == "__main__":
             answer_kg = answer_kg.split(", ")
             # print(answer_kg)
 
-# ---------------------------------------end of part1--------------------------------------------
             match_kg = []
             entity_embeddings_emb = pd.DataFrame(entity_embeddings["embeddings"])
            
